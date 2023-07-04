@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<title>Event Listeners/Handlers | COMP1073 Client-Side JavaScript</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<meta name="theme-color" content="#db5945">
+	<link href="css/normalize.css" rel="stylesheet" />
+	<link href="css/styles.css" rel="stylesheet" />
+	
+</head>
+
+<body>
+	<h1>Event Listeners/Handlers</h1>
+	<p>Events are any number of things that can happen inside a browser – from the user resizing the document window, certain content being scrolled, or even a video reaching the end of the clip. There are a huge number of events that can be listened for in your code, and for each one, a corresponding action can be taken.
+
+	<p>This week we will look at how we can leverage event listeners and event handlers to enable even more user interaction in our applications and web pages.</p>
+
+	<button>Change Page Color</button>
+	<!-- <button>A</button>
+	<button>B</button>
+	<button>C</button> -->
+
+	<script>
+		// Declare and initialize variables
+		var btn = document.querySelector('button');
+		
+		// Functions
+		function random(number) {
+			return Math.floor(Math.random()*(number+1));
+		}
+		function bgChange() {
+			var rndCol = 'rgb(' + random(255) + ',' + random(255) + ',' + random(255) + ')';			document.body.style.backgroundColor = rndCol;
+		}
+		// Event Listeners/Handlers
+		//btn.onclick = bgChange;
+		
+		function bgChange() {
+			document.body.style.backgroundColor = 'skyblue';
+		}
+
+		/* STEP 1: Experiment with a variety of different events - comment out the above onclick listener and build an alternate one below - try the following - onfocus/onblur, ondblclick, onmouseover/onmouseout, window.onkeypress/onkeydown/onkeyup
+		*/
+		// window.onkeyup = bgChange;
+
+		/* STEP 2: Inline event handlers - don't use! */
+		// Comment out the above event listener/handler, and add the same event as an attribute directly to the button element
+
+		btn.onclick = bgChange;
+		/* STEP 3: Let's apply event handlers/listeners to a group of buttons - comment out the above BUTTON element, and create three new ones, A, B, and C */
+
+		var buttons = document.querySelectorAll('button');
+		for (var i = 0; i < buttons.length; i++) {
+			buttons[i].onclick = bgChange;
+		}
+		// var buttons = document.querySelectorAll('button');
+
+		// for (var i = 0; i < buttons.length; i++) {
+		// 	buttons[i].onclick = bgChange;
+		// }
+
+		/* STEP 4a: addEventListener() and removeEventListener()
+		Let's rewrite the above code with these two methods - comment out the A, B, C buttons and restore the original button - then comment out the above code */
+
+		// btn.addEventListener('click', bgChange);
+
+		/* STEP 4b: We can also put the entire bgChange() function inside an anonymous function, if we'd like: */
+
+		// btn.addEventListener('click', function() {
+		// 	var rndCol = 'rgb(' + random(255) + ',' + random(255) + ',' + random(255) + ')';
+		// 	document.body.style.backgroundColor = rndCol;
+		// });
+
+		/* STEP 4c: We can now remove the event listener … comment out the above code in STEP 4b, and then add another event listener, then remove it (silly, yes, but try it all the same) */
+		
+		btn.addEventListener('click', bgChange);
+		btn.removeEventListener('click', bgChange);
+
+		// The ability to remove an event listener provides you with greater flexibility, at the cost of a bit more complexity - the choice is yours, but avoid inline JS
+
+		// Next, open up events2.html and we will learn about some other concepts specific to events and how to manage them
+
+		// This page inspired by and adapted from https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Building_blocks/Events
+		</script>
+	</body>
+</html>
